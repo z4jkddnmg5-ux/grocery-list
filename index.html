@@ -45,22 +45,23 @@ button.pr{color:var(--ac)}
 </style></head><body><div class="wrap">
 <div class="top"><div><small>Market District · Strongsville · 15919 Pearl Rd</small><h1>Grocery Checklist</h1></div></div>
 <div class="card sum"><div class="ring"><svg width="104" height="104"><circle class="bgc" cx="52" cy="52" r="45"/><circle class="fg" id="rg" cx="52" cy="52" r="45"/></svg><div><b id="pc">0%</b><span id="of"></span></div></div>
-<div><div class="lbl">Estimated total</div><div class="amt">$139.23</div><div class="chips"><span class="chip" id="il"></span><span class="chip g" id="sl"></span></div></div></div>
+<div><div class="lbl">Estimated total</div><div class="amt">$162.19</div><div class="chips"><span class="chip" id="il"></span><span class="chip g" id="sl"></span></div></div></div>
 <div class="tg"><button class="pr" id="hb">Hide checked</button><button onclick="if(confirm('Reset checklist?')){localStorage.removeItem('ge');location.reload()}">Reset checklist</button></div>
 <div id="list"></div></div>
 <script>
 const S=[
 ["1. Produce (front right)",[["Bananas","6","Produce, Bananas"],["Avocados","3","Produce, Avocados"],["Organic Strawberries, 1 lb","1","Produce, Berries"],["Diamond Blues Blueberries, 1 pt","1","Produce, Berries"],["Driscoll's Raspberries, 6 oz","1","Produce, Berries"]]],
 ["2. Deli & Cheese (far right)",[["BelGioioso Parmesan, 8 oz","1","Deli Self Service, Cheese Shop"],["Taste Republic Fusilli, 9 oz","1","Deli Self Service, Deli Pasta"]]],
-["3. Butcher (back right)",[["Nature's Basket Chicken Breast, ~1.5 lb","1","Meat Self Service, Chicken"]]],
+["3. Butcher & Seafood (back right)",[["Nature's Basket Chicken Breast, ~1.5 lb","1","Meat Self Service, Chicken"],["Nature's Basket Raw Shrimp, peeled & deveined","0.5 lb","Seafood Self Service"]]],
 ["4. Aisle 1",[["Gunter's Clover Honey, 12 oz","1","Aisle 1"]]],
 ["5. Aisle 2",[["Bibigo Gochujang, 12.16 oz","1","Aisle 2, Asian Sauces"],["Marukan Rice Vinegar, 12 oz","1","Aisle 2, Vinegar"]]],
 ["6. Aisle 3",[["Carolina Jasmine Rice, 2 lb","1","Aisle 3, Rice"]]],
 ["7. Aisle 4",[["McCormick Sesame Seed, 1 oz","1","Aisle 4, Spices"],["Bob's Red Mill Flaxseed Meal, 16 oz","1","Aisle 4, Baking"]]],
-["8. Aisle 6",[["Giant Eagle Old Fashioned Oats, 42 oz","1","Aisle 6, Hot Cereal"]]],
-["9. Health & Nutrition (aisle not listed)",[["Giant Eagle Vanilla Whey Protein, 32 oz","1","Health & Beauty, Protein Powders"]]],
-["10. Frozen 8",[["Giant Eagle Frozen Sliced Strawberries, 48 oz","1","Frozen 8"]]],
-["11. Milk (back left, last)",[["fairlife Whole Milk, 52 oz","1","Dairy, Milk"],["Nature's Basket Organic Whole Milk, 1 gal","1","Dairy, Milk"]]]];
+["8. Aisle 5",[["Chomps Jalapeño Beef Sticks, 8 ct","1","Aisle 5, Meat Snacks"]]],
+["9. Aisle 6",[["Giant Eagle Old Fashioned Oats, 42 oz","1","Aisle 6, Hot Cereal"]]],
+["10. Health & Nutrition (aisle not listed)",[["Giant Eagle Vanilla Whey Protein, 32 oz","1","Health & Beauty, Protein Powders"]]],
+["11. Frozen 8",[["Giant Eagle Frozen Sliced Strawberries, 48 oz","1","Frozen 8"]]],
+["12. Milk (back left, last)",[["fairlife Whole Milk, 52 oz","1","Dairy, Milk"],["Nature's Basket Organic Whole Milk, 1 gal","1","Dairy, Milk"]]]];
 const IC=[["🥬","#E6F6EC"],["🧀","#FFF4D6"],["🍗","#FDE7E4"],["🍯","#FFF0E0"],["🌶️","#FDE7E4"],["🍚","#EEF0F6"],["🧂","#F1ECE6"],["🥣","#F4EEE4"],["💪","#E8F0FD"],["🧊","#E3F4FB"],["🥛","#EAF1FB"]];
 const BC=["#2DB67C","#F5B700","#E5484D","#FF8A3D","#FF692D","#6E7BF2","#A1785C","#C9944A","#3B82F6","#22A6D6","#5B8DEF"];
 const st=JSON.parse(localStorage.getItem('ge')||'{}');let t=0;const L=document.getElementById('list'),secs=[];
