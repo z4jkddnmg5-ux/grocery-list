@@ -1,13 +1,53 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Giant Eagle Strongsville Checklist</title>
-<style>body{font-family:-apple-system,system-ui,sans-serif;margin:0;background:#f6f6f6;color:#222}
-header{background:#d2232a;color:#fff;padding:14px 16px;position:sticky;top:0}h1{font-size:18px;margin:0}#p{font-size:13px;opacity:.9}
-h2{font-size:14px;margin:18px 16px 6px;color:#d2232a;text-transform:uppercase}
-label{display:flex;gap:12px;align-items:center;background:#fff;margin:6px 12px;padding:12px;border-radius:10px;box-shadow:0 1px 2px #0001}
-input{width:24px;height:24px;flex:none}.n{font-weight:600}.m{font-size:12px;color:#666}
-label.done{opacity:.45}label.done .n{text-decoration:line-through}button{margin:20px 16px;padding:10px 14px;border:0;border-radius:8px;background:#ddd}</style></head><body>
-<header><h1>Market District Strongsville &middot; 15919 Pearl Rd</h1><div id="p"></div></header><div id="list"></div>
-<button onclick="localStorage.removeItem('ge');location.reload()">Reset checklist</button>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Grocery Checklist</title>
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Groceries">
+<meta name="theme-color" content="#F7F5F2" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14181F" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20180%20180%22%3E%3Crect%20width%3D%22180%22%20height%3D%22180%22%20rx%3D%2240%22%20fill%3D%22%23FF692D%22/%3E%3Cpath%20d%3D%22M50%2092l26%2026%2054-58%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2218%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20180%20180%22%3E%3Crect%20width%3D%22180%22%20height%3D%22180%22%20rx%3D%2240%22%20fill%3D%22%23FF692D%22/%3E%3Cpath%20d%3D%22M50%2092l26%2026%2054-58%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2218%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E"><link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%20%22Grocery%20Checklist%22%2C%20%22short_name%22%3A%20%22Groceries%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22background_color%22%3A%20%22%23F7F5F2%22%2C%20%22theme_color%22%3A%20%22%23F7F5F2%22%2C%20%22start_url%22%3A%20%22https%3A//z4jkddnmg5-ux.github.io/grocery-list/%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/svg%2Bxml%2C%253Csvg%2520xmlns%253D%2522http%253A//www.w3.org/2000/svg%2522%2520viewBox%253D%25220%25200%2520180%2520180%2522%253E%253Crect%2520width%253D%2522180%2522%2520height%253D%2522180%2522%2520rx%253D%252240%2522%2520fill%253D%2522%2523FF692D%2522/%253E%253Cpath%2520d%253D%2522M50%252092l26%252026%252054-58%2522%2520stroke%253D%2522%2523fff%2522%2520stroke-width%253D%252218%2522%2520fill%253D%2522none%2522%2520stroke-linecap%253D%2522round%2522%2520stroke-linejoin%253D%2522round%2522/%253E%253C/svg%253E%22%2C%20%22sizes%22%3A%20%22180x180%22%2C%20%22type%22%3A%20%22image/svg%2Bxml%22%7D%5D%7D">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F7F5F2;--card:#fff;--tx:#1F2A44;--mu:#7A8399;--ln:#ECE8E3;--ac:#FF692D;--acs:#FFF0E8;--ok:#2DB67C;--sh:0 1px 2px rgba(31,42,68,.04),0 4px 16px rgba(31,42,68,.06)}
+@media(prefers-color-scheme:dark){:root{--bg:#14181F;--card:#1E232D;--tx:#EEF1F6;--mu:#8D96A8;--ln:#2A303C;--acs:#3A2418;--sh:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:env(safe-area-inset-top) 0 calc(24px + env(safe-area-inset-bottom))}
+.wrap{max-width:560px;margin:0 auto;padding:16px}
+.top{display:flex;justify-content:space-between;align-items:center;margin:4px 4px 14px}
+.top small{color:var(--mu);font-size:12px;font-weight:500}.top h1{font-size:22px;font-weight:800;margin:2px 0 0;letter-spacing:-.02em}
+.card{background:var(--card);border-radius:16px;box-shadow:var(--sh);margin-bottom:14px}
+.sum{padding:18px;display:flex;gap:18px;align-items:center}
+.ring{position:relative;width:104px;height:104px;flex:none}.ring svg{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:10}.ring .bgc{stroke:var(--ln)}.ring .fg{stroke:var(--ac);stroke-linecap:round;transition:stroke-dashoffset .6s cubic-bezier(.2,.8,.2,1)}
+.ring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring b{font-size:24px;font-weight:800;letter-spacing:-.02em}.ring span{font-size:11px;color:var(--mu)}
+.lbl{font-size:12px;color:var(--mu);font-weight:500}.amt{font-size:30px;font-weight:800;letter-spacing:-.03em;margin:2px 0 10px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{background:var(--acs);color:var(--ac);font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px}
+.chip.g{background:var(--bg);color:var(--mu)}
+.sec{padding:14px 14px 6px;overflow:hidden}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+.st{flex:1;min-width:0}.st h2{font-size:15px;font-weight:700;margin:0}.st p{margin:1px 0 0;font-size:12px;color:var(--mu)}
+.cnt{font-size:12px;font-weight:600;color:var(--mu)}
+.bar{height:6px;background:var(--ln);border-radius:9px;overflow:hidden;margin:0 0 6px}.bar i{display:block;height:100%;border-radius:9px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.it{display:flex;gap:12px;align-items:center;padding:12px 2px;border-top:1px solid var(--ln);cursor:pointer;transition:opacity .35s,max-height .35s,padding .35s;max-height:80px}
+.it:first-of-type{border-top:0}
+.cb{width:26px;height:26px;border-radius:50%;border:2px solid var(--ln);flex:none;display:flex;align-items:center;justify-content:center;transition:all .25s cubic-bezier(.3,1.5,.5,1)}
+.cb svg{width:14px;height:14px;stroke:#fff;stroke-width:3.5;fill:none;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .3s .05s}
+.n{font-size:15px;font-weight:600;transition:color .3s}.m{font-size:12px;color:var(--mu);margin-top:2px}
+.q{margin-left:auto;font-size:12px;font-weight:700;color:var(--mu);background:var(--bg);padding:3px 8px;border-radius:8px;flex:none}
+.it.done{opacity:.45}.it.done .cb{background:var(--ok);border-color:var(--ok);transform:scale(1.05)}.it.done .cb svg{stroke-dashoffset:0}
+.it.done .n{text-decoration:line-through;color:var(--mu)}
+.hide .it.done{max-height:0;padding:0 2px;opacity:0;border:0;overflow:hidden}
+.sec.complete .sh h2::after{content:" ✓";color:var(--ok)}
+.tg{display:flex;gap:8px;margin:0 0 14px}
+button{font:600 14px Inter,system-ui,sans-serif;border:0;border-radius:12px;padding:12px 14px;background:var(--card);color:var(--tx);box-shadow:var(--sh);flex:1}
+button.pr{color:var(--ac)}
+</style></head><body><div class="wrap">
+<div class="top"><div><small>Market District · Strongsville · 15919 Pearl Rd</small><h1>Grocery Checklist</h1></div></div>
+<div class="card sum"><div class="ring"><svg width="104" height="104"><circle class="bgc" cx="52" cy="52" r="45"/><circle class="fg" id="rg" cx="52" cy="52" r="45"/></svg><div><b id="pc">0%</b><span id="of"></span></div></div>
+<div><div class="lbl">Estimated total</div><div class="amt">$139.23</div><div class="chips"><span class="chip" id="il"></span><span class="chip g" id="sl"></span></div></div></div>
+<div class="tg"><button class="pr" id="hb">Hide checked</button><button onclick="if(confirm('Reset checklist?')){localStorage.removeItem('ge');location.reload()}">Reset checklist</button></div>
+<div id="list"></div></div>
 <script>
 const S=[
 ["1. Produce (front right)",[["Bananas","6","Produce, Bananas"],["Avocados","3","Produce, Avocados"],["Organic Strawberries, 1 lb","1","Produce, Berries"],["Diamond Blues Blueberries, 1 pt","1","Produce, Berries"],["Driscoll's Raspberries, 6 oz","1","Produce, Berries"]]],
@@ -21,10 +61,22 @@ const S=[
 ["9. Health & Nutrition (aisle not listed)",[["Giant Eagle Vanilla Whey Protein, 32 oz","1","Health & Beauty, Protein Powders"]]],
 ["10. Frozen 8",[["Giant Eagle Frozen Sliced Strawberries, 48 oz","1","Frozen 8"]]],
 ["11. Milk (back left, last)",[["fairlife Whole Milk, 52 oz","1","Dairy, Milk"],["Nature's Basket Organic Whole Milk, 1 gal","1","Dairy, Milk"]]]];
-const st=JSON.parse(localStorage.getItem('ge')||'{}');let t=0;const L=document.getElementById('list');
-S.forEach(([h,it])=>{L.insertAdjacentHTML('beforeend',`<h2>${h}</h2>`);it.forEach(([n,q,l])=>{const id=n;t++;
-const e=document.createElement('label');e.innerHTML=`<input type=checkbox><div><div class=n>${n}</div><div class=m>Qty ${q} &middot; ${l}</div></div>`;
-const c=e.querySelector('input');c.checked=!!st[id];e.classList.toggle('done',c.checked);
-c.onchange=()=>{st[id]=c.checked;localStorage.setItem('ge',JSON.stringify(st));e.classList.toggle('done',c.checked);u()};L.appendChild(e)})});
-function u(){const d=Object.values(st).filter(Boolean).length;document.getElementById('p').textContent=`${d} of ${t} items in cart · est. $139.23`}u();
+const IC=[["🥬","#E6F6EC"],["🧀","#FFF4D6"],["🍗","#FDE7E4"],["🍯","#FFF0E0"],["🌶️","#FDE7E4"],["🍚","#EEF0F6"],["🧂","#F1ECE6"],["🥣","#F4EEE4"],["💪","#E8F0FD"],["🧊","#E3F4FB"],["🥛","#EAF1FB"]];
+const BC=["#2DB67C","#F5B700","#E5484D","#FF8A3D","#FF692D","#6E7BF2","#A1785C","#C9944A","#3B82F6","#22A6D6","#5B8DEF"];
+const st=JSON.parse(localStorage.getItem('ge')||'{}');let t=0;const L=document.getElementById('list'),secs=[];
+const ck='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+S.forEach(([h,it],i)=>{const m=h.match(/^\d+\.\s*([^(]+)(?:\((.*)\))?/);const c=document.createElement('div');c.className='card sec';
+c.innerHTML=`<div class="sh"><div class="ic" style="background:${IC[i][1]}">${IC[i][0]}</div><div class="st"><h2>${m[1].trim()}</h2><p>Stop ${i+1}${m[2]?' · '+m[2]:''}</p></div><span class="cnt"></span></div><div class="bar"><i style="background:${BC[i]}"></i></div>`;
+const rec={c,ids:[]};it.forEach(([n,q,l])=>{t++;rec.ids.push(n);const e=document.createElement('div');e.className='it';
+e.innerHTML=`<div class="cb">${ck}</div><div><div class="n">${n}</div><div class="m">${l}</div></div><span class="q">×${q}</span>`;
+e.classList.toggle('done',!!st[n]);e.onclick=()=>{st[n]=!st[n];localStorage.setItem('ge',JSON.stringify(st));e.classList.toggle('done',st[n]);navigator.vibrate&&navigator.vibrate(10);u()};c.appendChild(e)});
+secs.push(rec);L.appendChild(c)});
+const C=2*Math.PI*45,rg=document.getElementById('rg');rg.style.strokeDasharray=C;
+function u(){let d=0,sl=0;secs.forEach(s=>{const k=s.ids.filter(x=>st[x]).length;d+=k;if(k<s.ids.length)sl++;
+s.c.querySelector('.cnt').textContent=`${k}/${s.ids.length}`;s.c.querySelector('.bar i').style.width=(k/s.ids.length*100)+'%';s.c.classList.toggle('complete',k==s.ids.length)});
+rg.style.strokeDashoffset=C*(1-d/t);document.getElementById('pc').textContent=Math.round(d/t*100)+'%';document.getElementById('of').textContent=`${d} of ${t} items`;
+document.getElementById('il').textContent=`${t-d} items left`;document.getElementById('sl').textContent=`${sl} sections left`}
+const hb=document.getElementById('hb');let hide=localStorage.getItem('gehide')=='1';
+function ah(){document.body.classList.toggle('hide',hide);hb.textContent=hide?'Show checked':'Hide checked'}
+hb.onclick=()=>{hide=!hide;localStorage.setItem('gehide',hide?'1':'0');ah()};ah();u();
 </script></body></html>
