@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giant Eagle Strongsville Checklist</title>
+<style>body{font-family:-apple-system,system-ui,sans-serif;margin:0;background:#f6f6f6;color:#222}
+header{background:#d2232a;color:#fff;padding:14px 16px;position:sticky;top:0}h1{font-size:18px;margin:0}#p{font-size:13px;opacity:.9}
+h2{font-size:14px;margin:18px 16px 6px;color:#d2232a;text-transform:uppercase}
+label{display:flex;gap:12px;align-items:center;background:#fff;margin:6px 12px;padding:12px;border-radius:10px;box-shadow:0 1px 2px #0001}
+input{width:24px;height:24px;flex:none}.n{font-weight:600}.m{font-size:12px;color:#666}
+label.done{opacity:.45}label.done .n{text-decoration:line-through}button{margin:20px 16px;padding:10px 14px;border:0;border-radius:8px;background:#ddd}</style></head><body>
+<header><h1>Market District Strongsville &middot; 15919 Pearl Rd</h1><div id="p"></div></header><div id="list"></div>
+<button onclick="localStorage.removeItem('ge');location.reload()">Reset checklist</button>
+<script>
+const S=[
+["1. Produce (front right)",[["Bananas","6","Produce, Bananas"],["Avocados","3","Produce, Avocados"],["Organic Strawberries, 1 lb","1","Produce, Berries"],["Diamond Blues Blueberries, 1 pt","1","Produce, Berries"],["Driscoll's Raspberries, 6 oz","1","Produce, Berries"]]],
+["2. Deli & Cheese (far right)",[["BelGioioso Parmesan, 8 oz","1","Deli Self Service, Cheese Shop"],["Taste Republic Fusilli, 9 oz","1","Deli Self Service, Deli Pasta"]]],
+["3. Butcher (back right)",[["Nature's Basket Chicken Breast, ~1.5 lb","1","Meat Self Service, Chicken"]]],
+["4. Aisle 1",[["Gunter's Clover Honey, 12 oz","1","Aisle 1"]]],
+["5. Aisle 2",[["Bibigo Gochujang, 12.16 oz","1","Aisle 2, Asian Sauces"],["Marukan Rice Vinegar, 12 oz","1","Aisle 2, Vinegar"]]],
+["6. Aisle 3",[["Carolina Jasmine Rice, 2 lb","1","Aisle 3, Rice"]]],
+["7. Aisle 4",[["McCormick Sesame Seed, 1 oz","1","Aisle 4, Spices"],["Bob's Red Mill Flaxseed Meal, 16 oz","1","Aisle 4, Baking"]]],
+["8. Aisle 6",[["Giant Eagle Old Fashioned Oats, 42 oz","1","Aisle 6, Hot Cereal"]]],
+["9. Health & Nutrition (aisle not listed)",[["Giant Eagle Vanilla Whey Protein, 32 oz","1","Health & Beauty, Protein Powders"]]],
+["10. Frozen 8",[["Giant Eagle Frozen Sliced Strawberries, 48 oz","1","Frozen 8"]]],
+["11. Milk (back left, last)",[["fairlife Whole Milk, 52 oz","1","Dairy, Milk"],["Nature's Basket Organic Whole Milk, 1 gal","1","Dairy, Milk"]]]];
+const st=JSON.parse(localStorage.getItem('ge')||'{}');let t=0;const L=document.getElementById('list');
+S.forEach(([h,it])=>{L.insertAdjacentHTML('beforeend',`<h2>${h}</h2>`);it.forEach(([n,q,l])=>{const id=n;t++;
+const e=document.createElement('label');e.innerHTML=`<input type=checkbox><div><div class=n>${n}</div><div class=m>Qty ${q} &middot; ${l}</div></div>`;
+const c=e.querySelector('input');c.checked=!!st[id];e.classList.toggle('done',c.checked);
+c.onchange=()=>{st[id]=c.checked;localStorage.setItem('ge',JSON.stringify(st));e.classList.toggle('done',c.checked);u()};L.appendChild(e)})});
+function u(){const d=Object.values(st).filter(Boolean).length;document.getElementById('p').textContent=`${d} of ${t} items in cart · est. $139.23`}u();
+</script></body></html>
